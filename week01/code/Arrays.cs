@@ -9,11 +9,17 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        //Step 1: create a fixed array with the dimension of the length input
+        var numberMuliples = new double[length];
+        for (var i = 0; i < length; i++)
+        {
+            //Step 2: Calculate multiple of number
+            var result = number * (i + 1);
+            //Step 3: Insert element in the array
+            numberMuliples[i] = result;
+        }
+        //Step 4: Return the array 
+        return numberMuliples;
     }
 
     /// <summary>
@@ -26,8 +32,16 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //Step 1: Get all value in the first part of the array that I need to move. Eg : Original array[1,2,3,4]
+        // If amount = 1 the result is [4,1,2,3] so I need to move the 1,2,3 to the right so I copy it in a new array.
+        List<int> temp_data = new List<int>();
+        temp_data = data.GetRange(0, data.Count - amount);
+
+        //Step 2: Remove all value in the first part of the array.
+        data.RemoveRange(0, data.Count - amount);
+
+        //Step 3: Add the temporary array in the original array.
+        data.AddRange(temp_data);
+
     }
 }
