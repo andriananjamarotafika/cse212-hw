@@ -39,10 +39,18 @@ public class TakingTurnsQueue
         }
         else
         {
+            //In this code, We need to check if the person had turns left or not to avoid the infinite turn
             Person person = _people.Dequeue();
-            if (person.Turns > 1)
+            if (person.Turns > 0)
             {
                 person.Turns -= 1;
+                if (person.Turns != 0)
+                {
+                    _people.Enqueue(person);
+                }
+            }
+            else
+            {
                 _people.Enqueue(person);
             }
 

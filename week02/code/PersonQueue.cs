@@ -13,7 +13,8 @@ public class PersonQueue
     /// <param name="person">The person to add</param>
     public void Enqueue(Person person)
     {
-        _queue.Insert(0, person);
+        //Instead of adding person in the last, the method add the person in the first so I change it
+        _queue.Add(person);
     }
 
     public Person Dequeue()
@@ -27,6 +28,7 @@ public class PersonQueue
     {
         return Length == 0;
     }
+
 
     public override string ToString()
     {
