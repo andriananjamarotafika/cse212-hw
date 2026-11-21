@@ -1,4 +1,6 @@
 using System.Text.Json;
+using System;
+using System.Linq;
 
 public static class SetsAndMaps
 {
@@ -19,10 +21,37 @@ public static class SetsAndMaps
     /// that there were no duplicates) and therefore should not be returned.
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
+
+
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        var wordsHash = new HashSet<string>();
+        var reverseSet = new HashSet<string>();
+        List<string> result = new List<string>();
+
+        foreach (string word in words)
+        {
+            string reverseWord = new string(word.Reverse().ToArray());
+            if (!wordsHash.Contains(reverseWord) && word != reverseWord)
+            {
+                wordsHash.Add(word);
+            }
+        }
+
+        foreach (var item in wordsHash)
+        {
+            reverseSet.Add(new string(item.Reverse().ToArray()));
+        }
+
+        for (var i = 0; i < words.Count(); i++)
+        {
+            if (reverseSet.Contains(words[i]))
+            {
+                result.Add($"{words[i]} & {new string(words[i].Reverse().ToArray())}");
+            }
+        }
+        return result.ToArray();
     }
 
     /// <summary>
@@ -42,7 +71,16 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            string degree = fields[3];
+            int value = 1;
+            if (degrees.ContainsKey(degree))
+            {
+                degrees[degree] += 1;
+            }
+            else
+            {
+                degrees.Add(degree, value);
+            }
         }
 
         return degrees;
@@ -66,8 +104,50 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        Dictionary<char, int> dict1 = new Dictionary<char, int>();
+        Dictionary<char, int> dict2 = new Dictionary<char, int>();
+        bool isAnagram = false;
+        char[] letter1;
+        char[] letter2;
+        word1 = word1.Replace(" ", "");
+        word2 = word2.Replace(" ", "");
+        letter1 = word1.ToLower().ToCharArray();
+        letter2 = word2.ToLower().ToCharArray();
+        int n = letter1.Count();
+
+        if (n == letter2.Count())
+        {
+            for (var i = 0; i < n; i++)
+            {
+                if (dict1.ContainsKey(letter1[i]))
+                    dict1[letter1[i]] += 1;
+                else
+                    dict1.Add(letter1[i], 1);
+
+                if (dict2.ContainsKey(letter2[i]))
+                    dict2[letter2[i]] += 1;
+                else
+                    dict2.Add(letter2[i], 1);
+            }
+
+            foreach (var item in dict1)
+            {
+                if (dict2.ContainsKey(item.Key))
+                {
+                    if (dict2[item.Key] == item.Value)
+                    {
+                        isAnagram = true;
+                    }
+                    else
+                    {
+                        isAnagram = false;
+                        break;
+                    }
+                }
+            }
+
+        }
+        return isAnagram;
     }
 
     /// <summary>
@@ -104,3 +184,7 @@ public static class SetsAndMaps
         return [];
     }
 }
+
+
+
+

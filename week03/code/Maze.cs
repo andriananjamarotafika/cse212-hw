@@ -30,9 +30,43 @@ public class Maze
     /// Check to see if you can move left.  If you can, then move.  If you
     /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
     /// </summary>
+
+    Dictionary<ValueTuple<int, int>, bool[]> blocus = new()
+    {
+        { (1, 3), new[] { false, false, false, false } },
+        { (2, 5), new[] { false, false, false, false } },
+        { (2, 6), new[] { false, false, false, false } },
+        { (3, 1), new[] { false, false, false, false } },
+        { (3, 2), new[] { false, false, false, false } },
+        { (3, 3), new[] { false, false, false, false } },
+        { (4, 2), new[] { false, false, false, false } },
+        { (4, 5), new[] { false, false, false, false } },
+        { (4, 6), new[] { false, false, false, false } },
+        { (6, 2), new[] { false, false, false, false } },
+        { (6, 4), new[] { false, false, false, false } },
+        { (6, 5), new[] { false, false, false, false } }
+
+    };
     public void MoveLeft()
     {
-        // FILL IN CODE
+        int check_X = _currX - 1;
+        if (_currX == 1 && _currY == 1)
+            _mazeMap[(_currX, _currY)] = [false, true, false, true]; //L,R,U,D
+
+        if (_mazeMap[(_currX, _currY)][0] == false || blocus.ContainsKey((check_X, _currY)))
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
+        else
+        {
+            _currX--;
+            if (_currX == 1)
+                _mazeMap[(_currX, _currY)][0] = false;
+            else
+                _mazeMap[(_currX, _currY)][0] = true;
+
+        }
+
     }
 
     /// <summary>
@@ -41,7 +75,27 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        // FILL IN CODE
+        int check_X = _currX + 1;
+        if (_currX == 1 && _currY == 1)
+            _mazeMap[(_currX, _currY)] = [false, true, false, true]; //L,R,U,D
+
+        if (_mazeMap[(_currX, _currY)][1] == false || blocus.ContainsKey((check_X, _currY)))
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
+        else
+        {
+            _currX++;
+            if (_currX == 6)
+            {
+                _mazeMap[(_currX, _currY)][1] = false;
+            }
+            else
+            {
+                _mazeMap[(_currX, _currY)][1] = true;
+            }
+
+        }
     }
 
     /// <summary>
@@ -50,7 +104,23 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        // FILL IN CODE
+        int check_Y = _currY - 1;
+        if (_currX == 1 && _currY == 1)
+            _mazeMap[(_currX, _currY)] = [false, true, false, true]; //L,R,U,D
+
+        if (_mazeMap[(_currX, _currY)][2] == false || blocus.ContainsKey((_currX, check_Y)))
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
+        else
+        {
+            _currY--;
+            if (_currY == 1)
+                _mazeMap[(_currX, _currY)][2] = false;
+            else
+                _mazeMap[(_currX, _currY)][2] = true;
+
+        }
     }
 
     /// <summary>
@@ -59,7 +129,23 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        // FILL IN CODE
+        int check_Y = _currY + 1;
+        if (_currX == 1 && _currY == 1)
+            _mazeMap[(_currX, _currY)] = [false, true, false, true]; //L,R,U,D
+
+        if (_mazeMap[(_currX, _currY)][3] == false || blocus.ContainsKey((_currX, check_Y)))
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }
+        else
+        {
+            _currY++;
+            if (_currY == 6)
+                _mazeMap[(_currX, _currY)][3] = false;
+            else
+                _mazeMap[(_currX, _currY)][3] = true;
+
+        }
     }
 
     public string GetStatus()

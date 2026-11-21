@@ -1,0 +1,52 @@
+{
+    "type": "FeatureCollection",
+    "metadata": {
+        "generated": 1795257394000,
+        "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
+        "title": "USGS All Earthquakes, Past Day",
+        "status": 200,
+        "api": "2.8.2",
+        "count": 262
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "mag": 1.6,
+                "place": "17 km SSE of Eureka Roadhouse, Alaska",
+                "time": 1795257294269,
+                "updated": 1795257373855,
+                "tz": null,
+                "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026xbggqi",
+                "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/aka2026xbggqi.geojson",
+                "felt": null,
+                "cdi": null,
+                "mmi": null,
+                "alert": null,
+                "status": "automatic",
+                "tsunami": 0,
+                "sig": 39,
+                "net": "ak",
+                "code": "a2026xbggqi",
+                "ids": ",aka2026xbggqi,",
+                "sources": ",ak,",
+                "types": ",origin,phase-data,",
+                "nst": 20,
+                "dmin": 0.1,
+                "rms": 0.9,
+                "gap": 110,
+                "magType": "ml",
+                "type": "earthquake",
+                "title": "M 1.6 - 17 km SSE of Eureka Roadhouse, Alaska"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -147.045,
+                    61.791,
+                    24.6
+                ]
+            },
+            "id": "aka2026xbggqi"
+        }
+    }
